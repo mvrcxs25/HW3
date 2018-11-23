@@ -48,13 +48,15 @@ public:
 			que[0] = que[sizeCurr - 1];
 			sizeCurr = sizeCurr - 1;
 
+			bubbleDown(0);
+
 			return bottom;
 		}
 		
 	}
 	
 
-	Type insert(int p) {
+	void insert(int p) {
 		if (Max == sizeCurr)
 			return 0;
 
@@ -62,16 +64,48 @@ public:
 		int temp = sizeCurr - 1; // total 
 		que[temp] = p;
 
-		while (temp != 0 && que[(temp - 1) / 2] > que[temp]) {
-			swap(que[(temp - 1) / 2] > que[temp]);
-			temp = (temp - 1) / 2;
-			
-
-		}
-		return temp;
-
-
+		bubbleUP(sizeCurr - 1);
 
 	}
+
+	void bubbleUP(Type t){
+		// If parent of entire array
+		if(index == 0)
+			return;
+
+		// Get value of parent index of item to bubble up
+		int parentT = (t-1)/2;
+
+		// If parent is greater than child
+		if(que[parentT] > que[t])
+		{
+			// Swap values
+			int temp = que[parentT];
+			que[parentT] = que[t];
+			que[t] = temp;
+			BubbleUp(parentT);
+		}
+
+	}
+
+	void bubbleDown(Type t){
+		// Get children of t and save t
+		int leftChildIndex = 2*t + 1;
+		int rightChildIndex = 2*t + 2;
+		int smallest = t;
+
+		if (leftChildIndex < sizeCurr && que[leftChildIndex] < que[t])
+			smallest = leftChildIndex;
+
+		if (rightChildIndex < sizeCurr && que[rightChildIndex] < que[smallest])
+			smallest = rightChildIndex;
+
+		if (smallest != i) {
+			swap(&que[i], &que[smallest]);
+			bubbleDown(smallest);
+		}
+	}
+
+
 };
 #endif
