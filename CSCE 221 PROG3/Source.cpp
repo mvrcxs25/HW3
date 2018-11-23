@@ -20,25 +20,24 @@ int main() {
 	
 	*/
 	
-	int T;
-	int elements;
-	int x;
+	int T, x, elements;
 	int MAXX = 100;
 
-	
 	ArrayS<int> ARR;
 	ArrayUN<int> ARRU;
 	HeapQueue<int> HeapQ;
 
-	/*
+	
 
 	// reading file 
 	ifstream myfile;	
 	myfile.open("numbers.txt");
+	// Get the value x and display
 	myfile >> x;
 	cout << x << endl;
-	myfile >> x;
-	T = x;
+	// Read in T from myfile 
+	myfile >> T;
+
 	elements = x;
 	while (!myfile.eof()) {
 		if (T == 0) {	//Unsorted
@@ -83,7 +82,7 @@ int main() {
 
 
 
-		*/
+		
 
 
 
