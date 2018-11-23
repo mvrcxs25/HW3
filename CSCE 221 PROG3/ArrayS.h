@@ -19,20 +19,18 @@ private:
 	int Front;
 	int Rear;
 	
-	vector<queue<int>> ArrS;
+	int Arrs[1000000];
 	
-
-
 public:
 
 	ArrayS(void)
 	{
+		
 		n = 100;
 		i = 0;
 		Front = 0;
 		Rear = 0;
 
-		ArrS.resize(1000);
 		 
 	}
 
@@ -41,42 +39,25 @@ public:
 		
 	}
 
-	int size(void)				// Return the size of queue
-	{
-		return n;
-	}
 
-	Type front() 				// Return, but do not remove, a reference to the front ele- ment in the queue; an error occurs if the queue is empt
-	{
-		return Front;
-	}
 
-	Type removeMin() 				// Remove element at the front of the queue. An error occurs if the queue is empty.
+	Type removeMin() 				
 	{
 		i = 0;
 
-		while (ArrS[i].empty()) {
-			
+		while (Arrs[i] == NULL) {
 			i++;
 		}
-		int Temp = ArrS[i].front();
-		ArrS[i].pop();
-		return Temp;
+
+		int temp = Arrs[i];
+		Arrs[i] == NULL;
+		return temp;
 
 	}
 
-	void insert(Type e, int p)  // Adds an element e to rear of queue
+	void insert(Type e, int p) 
 	{
-		if (p > n-1)
-		{
-			return;
-		}
-
-		else
-		{
-			ArrS[p] = queue<int>(); // add a queue
-			ArrS[p].push(e);
-		}
+		Arrs[p] = p;
 
 	}
 

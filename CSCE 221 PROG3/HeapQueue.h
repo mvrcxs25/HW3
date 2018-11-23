@@ -20,8 +20,8 @@ private:
 
 public:
 	HeapQueue() {
-		max = 1000; // array starts at max size of 1000
-		que = new int[1000];
+		max = 10000; // array starts at max size of 1000
+		que = new int[10000];
 		sizeCurr = 0; //current value is 0
 
 	
@@ -56,8 +56,8 @@ public:
 	}
 	
 
-	void insert(int p) {
-		if (Max == sizeCurr)
+	Type insert(int p) {
+		if (max == sizeCurr)
 			return 0;
 
 		sizeCurr++;
@@ -70,7 +70,7 @@ public:
 
 	void bubbleUP(Type t){
 		// If parent of entire array
-		if(index == 0)
+		if(sizeCurr == 0)
 			return;
 
 		// Get value of parent index of item to bubble up
@@ -83,7 +83,7 @@ public:
 			int temp = que[parentT];
 			que[parentT] = que[t];
 			que[t] = temp;
-			BubbleUp(parentT);
+			bubbleUP(parentT);
 		}
 
 	}
@@ -100,8 +100,10 @@ public:
 		if (rightChildIndex < sizeCurr && que[rightChildIndex] < que[smallest])
 			smallest = rightChildIndex;
 
-		if (smallest != i) {
-			swap(&que[i], &que[smallest]);
+		if (smallest != t) {
+			int temp = que[t];
+			que[t] = que[smallest];
+			que[smallest] = temp;
 			bubbleDown(smallest);
 		}
 	}
