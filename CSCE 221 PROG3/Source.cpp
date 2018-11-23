@@ -13,14 +13,14 @@ int main() {
 	
 	
 	/*
-		There are two main parts to this program. The first is the assignement in which the program will read in a few numbers and then 
+		There are two main parts to this program. The first is the assignement in which the program will read in a few numbers and then
 		print them ot the screen. In this case I just went ahead and added cout, which will show the number once the program reads the file. 
-		The second part is the program in which I used to test the speed of the run times. There are a total of 5 stomachwatch resets. Each list 
+		The second part is the program in which I used to test the speed of the run times. There are a total of 5 stomachwatch resets. Each list
 		or heap have their own times, regarding their correspondng functioning run times.	
 	
 	*/
 	
-	int T, x, elements;
+	int typeOfQ, numOfItems, x;
 	int MAXX = 100;
 
 	ArrayS<int> ARR;
@@ -32,61 +32,53 @@ int main() {
 	// reading file 
 	ifstream myfile;	
 	myfile.open("numbers.txt");
-	// Get the value x and display
-	myfile >> x;
-	cout << x << endl;
-	// Read in T from myfile 
-	myfile >> T;
+	// Get the type of queue
+	myfile >> typeOfQ;
+	cout << typeOfQ << endl;
 
-	elements = x;
-	while (!myfile.eof()) {
-		if (T == 0) {	//Unsorted
-			for (int i = 0; i < elements; i++) {
+	// Read in number of items from myfile
+	myfile >> numOfItems;
+
+	// For next number of items in file, insert into type of queue
+	for (int j = 0; j < numOfItems ; ++j) {
+		// Read in next line
+		myfile >> x;
+
+		// Insert into queue
+		if (typeOfQ == 0) {	        //Unsorted
 				ARR.insert(x, x);
 				cout << x << endl;
-			}
 		}
-		else if (T == 1) {	//Sorted
-			for (int i = 0; i < elements; i++) {
+		else if (typeOfQ == 1) {	//Sorted
 				ARRU.insert(x, x);
 				cout << x << endl;
-			}
 		}
 
-		else {	//T == 2; Heap
-			for (int i = 0; i < elements; i++) {
+		else {	                    //Heap
 				HeapQ.insert(x);
 				cout << x << endl;
-			}
-
 		}
 	}
 
-		myfile.close();
+	myfile.close();
 
-		for (int i = 0; i < elements; i++) {
-			if (T == 0) {	//Unsorted
-				cout << ARR.removeMin() << endl;
+	for (int i = 0; i < numOfItems; i++) {
+		if (typeOfQ == 0) {	//Unsorted
+			cout << ARR.removeMin() << endl;
 
-			}
-			else if (T == 1) {	//Sorted
-				cout << ARRU.removeMin() << endl;
-			}
+		}
+		else if (typeOfQ == 1) {	//Sorted
+			cout << ARRU.removeMin() << endl;
+		}
 
-			else {	//T == 2; Heap
-				cout << HeapQ.removeMin() << endl;
-
-			}
+		else {	//Heap
+			cout << HeapQ.removeMin() << endl;
 
 		}
 
+	}
 
-
-		
-
-
-
-		
+	////////////////////////////////////////////////////////////////////////////
 
 		CStopWatch Timer;
 		Timer.Reset(); //sets the stopwatch to 0
